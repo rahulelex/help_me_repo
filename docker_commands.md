@@ -99,6 +99,10 @@ Simply just change **/var/run/docker.sock** permission using chown and chmod, in
 --cap-add=NET_ADMIN
 #### detached mode
 -d
+--net ROS_NW --ip 10.0.1.2
+
+#### Start docker with network host
+> $ docker run -tid --privileged --net=host --pid=host --ipc=host --volume /:/host --name=onboarding_docker onboard_agv:1_0
 
 #### Some examples:
 > $ sudo docker run -itd -v /home/ubuntu/docker/robot1:/home/code --name robot1 -p 6680:80 repository_name:tag_name
@@ -132,6 +136,7 @@ Simply just change **/var/run/docker.sock** permission using chown and chmod, in
 
 ### To create network with overlay without encryption
 > $ sudo docker network create --driver overlay --attachable ROS_NWK_UNENCRYPTED
+> $ sudo docker network create --driver overlay --subnet 10.0.2.0/24 --attachable ROS_NWK_UNENCRYPTED
 
 ### After create network command you will see something like this
 6xhxdrjtc1hr6v4b8uyvgsp6a7
@@ -214,4 +219,22 @@ https://github.com/NVIDIA/nvidia-docker
  - all volumes not used by at least one container
  - all dangling images
  - all build cache
+--------------------------------------------------------------------------------------------
+### To automate docker
+##### Create a filename.sh file and write
+> #!/bin/bash
+> source /root/.bashrc
+> source /opt/ros/melodic/setup.bash
+> source /home/ubuntu/workspace/devel/setup.bash
+> value="$(ip a s eth0 | egrep -o 'inet > [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d' ' -f2)"
+> export ROS_MASTER_URI=http://$value:11311
+> export ROS_HOSTNAME=$value
+> export ROS_IP=$value
+> #write you code to run scripts. Below are examples:
+> bash any_script.sh
+> #roslaunch package launch_file.launch 2>&1 &
+##### After saving above with filename.sh 
+##### Write below comamnd in ros_entrypoint.sh before #exec "$@"
+> "bash filename.sh"
+
 --------------------------------------------------------------------------------------------
