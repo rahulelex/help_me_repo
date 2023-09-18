@@ -7,14 +7,9 @@ Use ctrl + f to search command if you know it partially.
 ```sh
 sudo usermod -aG docker ${USER}
 sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chown "$USER":"$USER" /var/run/docker.sock -R
 sudo chmod g+rwx "$HOME/.docker" -R
 ```
-
-<sub> Log: "Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get"http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/json": dial unix/var/run/docker.sock: connect: permission denied" </sub>
-
-Simply just change **/var/run/docker.sock** permission using chown and chmod, in the above log case.
-
-
 ##  ------------------------------ BASIC COMMANDS --------------------------
 ### To check docker Engine's server and client installed version information
 ```sh
