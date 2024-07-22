@@ -16,10 +16,10 @@ $ microk8s status --wait-ready
 $ microk8s enable dashboard dns registry istio
 ```
 
-### Add the user amantya to the 'microk8s' group:
+### Add the user <username> to the 'microk8s' group:
 ```sh
-$ sudo usermod -a -G microk8s amantya
-$ sudo chown -R amantya ~/.kube
+$ sudo usermod -a -G microk8s <username>
+$ sudo chown -R <username> ~/.kube
 ```
 
 After this, reload the user groups either via a reboot or by running.
@@ -41,7 +41,7 @@ $ microk8s ctr images rm docker.io/library/onboard_agv_jackal:1_0
 
 # Now loading image on worker node
 ```sh
-$ microk8s ctr image import amantya_orch_gazebo_mec.tar.gz
+$ microk8s ctr image import orch_gazebo_mec.tar.gz
 ```
 
 # Start pod using local image loaded.
@@ -190,10 +190,10 @@ $ kubectl describe po ubuntu-sl
 Events:
   Type     Reason   Age   From     Message
   ----     ------   ----  ----     -------
-  Normal   Pulling  13s   kubelet  Pulling image "ros-gazebo:amantya"
-  Warning  Failed   10s   kubelet  Failed to pull image "ros-gazebo:amantya": rpc error: code = Unknown desc = failed to pull and unpack image "docker.io/library/ros-gazebo:amantya": failed to resolve reference "docker.io/library/ros-gazebo:amantya": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Normal   Pulling  13s   kubelet  Pulling image "ros-gazebo:ubuntu"
+  Warning  Failed   10s   kubelet  Failed to pull image "ros-gazebo:ubuntu": rpc error: code = Unknown desc = failed to pull and unpack image "docker.io/library/ros-gazebo:ubuntu": failed to resolve reference "docker.io/library/ros-gazebo:ubuntu": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
   Warning  Failed   10s   kubelet  Error: ErrImagePull
-  Normal   BackOff  9s    kubelet  Back-off pulling image "ros-gazebo:amantya"
+  Normal   BackOff  9s    kubelet  Back-off pulling image "ros-gazebo:ubuntu"
   Warning  Failed   9s    kubelet  Error: ImagePullBackOff
 -->
 

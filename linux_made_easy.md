@@ -65,7 +65,7 @@ ________________________________________________________________________________
 df -h 
 
 ## Linux dd command to clone and copy entire storage
-sudo dd if=/dev/sdb of=/home/amantya/hal/docker_file/vts257/backup_hal_sdb.img bs=4M status=progress
+sudo dd if=/dev/sdb of=/home/<username>/hal/docker_file/vts257/backup_hal_sdb.img bs=4M status=progress
 ________________________________________________________________________________________________________
 ## Symlink 
 ln -s <source_absolute_path> <destination_path>

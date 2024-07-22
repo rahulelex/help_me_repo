@@ -9,8 +9,8 @@ Warning  FailedCreatePodSandBox  4m42s                kubelet  Failed to create 
 Arguments file /var/snap/microk8s/4595/args/ctr is missing.
 Solution:
 microk8s kubectl get pods
-sudo usermod -a -G microk8s amantya
-sudo chown -R amantya ~/.kube
+sudo usermod -a -G microk8s <username>
+sudo chown -R <username> ~/.kube
 newgrp microk8s
 
 now we can check available cache images:
