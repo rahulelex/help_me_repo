@@ -1,0 +1,14 @@
+### Create new branch and push code on github
+1. Take fresh pull from main branch or other branch.
+2. Then create a new branch
+    $ git checkout -b ＜new-branch＞ ＜existing-branch＞
+3. Make changes and then add new changes and commit on branch
+
+
+
+
+git config --global pull.rebase false
+git config pull.rebase false
+commit then
+git pull origin develop
+git push origin HEAD
